@@ -60,12 +60,14 @@ def get_white_borders(image: np.array) -> Tuple[int, int, int, int]:
     return left_point, right_point, top_point, bottom_point
 
 def output_processed_unprocessed(output_dir: str, processed_dir: str, unprocessed_dir: str, file: str) -> None:
-    pages = convert_from_path(file)
+    
     # Make folder if they don't exist yet
     if not isdir(join(output_dir, processed_dir)):
         mkdir(join(output_dir, processed_dir))
     if not isdir(join(output_dir, unprocessed_dir)):
         mkdir(join(output_dir, unprocessed_dir))
+
+    pages = convert_from_path(file)
 
     if len(pages) > 1:
         copyfile(file, join(output_dir, unprocessed_dir, split(file)[-1]))
